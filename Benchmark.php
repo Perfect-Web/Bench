@@ -19,12 +19,12 @@ class Benchmark extends Bench
 		$shortest = $this->getShortestMark();
 
 		foreach($this->getMarks() as $mark){
-			$table->appendRow($mark['id'], $mark['since_last_mark'], $mark['since_start']);
+			$table->appendRow(array($mark['id'], $mark['since_last_mark'], $mark['since_start']));
 		}
 
-		$table->appendRow('Longest: '.$longest['id'], $longest['since_last_mark'], $longest['since_start']);
-		$table->appendRow('Shortest: '.$shortest['id'], $shortest['since_last_mark'], $shortest['since_start']);
-		$table->appendRow('Average ', $this->getMarkAverage(), '');
+		$table->appendRow(array('Longest: '.$longest['id'], $longest['since_last_mark'], $longest['since_start']));
+		$table->appendRow(array('Shortest: '.$shortest['id'], $shortest['since_last_mark'], $shortest['since_start']));
+		$table->appendRow(array('Average ', $this->getMarkAverage(), ''));
 
 		echo $table;
 
