@@ -38,12 +38,12 @@ class Benchmark extends Bench
 
 		$table->appendRow(array('', '', ''));
 		$table->appendRow(array(
-			                  'Longest: '.chr(0x2502).$longest['id'].'',
+			                  'Longest: '.$longest['id'].'',
 			                  $longest['since_last_mark'].'',
 			                  $longest['since_start'].''
 		                  ));
 		$table->appendRow(array(
-			                  'Shortest: '.chr(0x2502).$shortest['id'].'',
+			                  'Shortest: '.$shortest['id'].'',
 			                  $shortest['since_last_mark'].'',
 			                  $shortest['since_start'].''
 		                  ));
