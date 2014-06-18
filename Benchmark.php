@@ -14,7 +14,7 @@ class Benchmark extends Bench
 
 		$table = new Zend\Text\Table\Table(array(
 			                                   'columnWidths' => array(
-				                                   50,
+				                                   70,
 				                                   25,
 				                                   25
 			                                   )
@@ -36,13 +36,14 @@ class Benchmark extends Bench
 			                  ));
 		}
 
+		$table->appendRow(array('', '', ''));
 		$table->appendRow(array(
-			                  'Longest: '.$longest['id'].'',
+			                  'Longest: '.chr(0x2502).$longest['id'].'',
 			                  $longest['since_last_mark'].'',
 			                  $longest['since_start'].''
 		                  ));
 		$table->appendRow(array(
-			                  'Shortest: '.$shortest['id'].'',
+			                  'Shortest: '.chr(0x2502).$shortest['id'].'',
 			                  $shortest['since_last_mark'].'',
 			                  $shortest['since_start'].''
 		                  ));
