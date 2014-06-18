@@ -24,6 +24,7 @@ class Benchmark extends Bench
 
 		$table->appendRow('Longest: '.$longest['id'], $longest['since_last_mark'], $longest['since_start']);
 		$table->appendRow('Shortest: '.$shortest['id'], $shortest['since_last_mark'], $shortest['since_start']);
+		$table->appendRow('Average ', $this->getMarkAverage(), '');
 
 		echo $table;
 
