@@ -12,87 +12,20 @@ class Benchmark extends Bench
 	function display()
 	{
 
-~rt($this->getStats());
-		$table = new Zend\Text\Table\Table(array(
-			                                   'columnWidths' => array(
-				                                   50,
-				                                   3,
-				                                   1,
-				                                   15,
-				                                   15,
-				                                   15,
-				                                   15,
-				                                   1,
-				                                   15,
-				                                   15,
-				                                   15,
-				                                   15
-			                                   )
-		                                   ));
+		$table = new Zend\Text\Table\Table(array('columnWidths' => array(50, 25, 25)));
+		$table->appendRow(array('Section', 'Duration', 'Since start'));
 
-		if (count($this->sections) == 1) {
-			$table->appendRow('No Data');
+		$longest = $this->getLongestMark();
+		$shortest = $this->getShortestMark();
+
+		foreach($this->getMarks() as $mark){
+			$table->appendRow($mark['id'], $mark['since_last_mark'], $mark['since_start']);
 		}
-		else {
 
-			$table->appendRow(array(
-				                  'Section',
-				                  '#',
-				                  '',
-				                  'Time',
-				                  '',
-				                  '',
-				                  '',
-				                  '',
-				                  'Memory',
-				                  '',
-				                  '',
-				                  ''
-			                  ));
-
-			$table->appendRow(array(
-				                  '',
-				                  '',
-				                  '',
-				                  'total',
-				                  'mean',
-				                  'median',
-				                  'deviation',
-				                  '',
-				                  'total',
-				                  'mean',
-				                  'median',
-				                  'deviation'
-			                  ));
-
-
-			foreach ($this->sections as $name => $section) {
-
-				if ($name == 'total') {
-					continue;
-				}
-
-				$table->appendRow(array(
-					                  $name,
-					                  $section['totals']['count'].'',
-					                  '',
-					                  $this->units('time', $section['totals']['time']),
-					                  $this->units('time', $section['totals']['mean_time']),
-					                  $this->units('time', $section['totals']['median_time']),
-					                  '+/-'.$this->units('time', $section['totals']['median_time_deviation']),
-					                  '',
-					                  $this->units('bytes', $section['totals']['memory']),
-					                  $this->units('bytes', $section['totals']['mean_memory']),
-					                  $this->units('bytes', $section['totals']['median_memory']),
-					                  '+/-'.$this->units('bytes', $section['totals']['median_memory_deviation'])
-				                  ));
-
-			}
-
-		}
+		$table->appendRow('Longest: '.$longest['id'], $longest['since_last_mark'], $longest['since_start']);
+		$table->appendRow('Shortest: '.$shortest['id'], $shortest['since_last_mark'], $shortest['since_start']);
 
 		echo $table;
-
 
 	}
 
